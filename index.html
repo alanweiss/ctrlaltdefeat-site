@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>CtrlAltDefeat.ai™ — Sloptastic Football on a Geodesic Globe</title>
+<meta name="description" content="CtrlAltDefeat.ai — a real-time territory-capture football (soccer) game played on a 3D geodesic globe. Pick your country, claim your jersey, and climb the worldwide leaderboards." />
+
+<!-- Open Graph / social preview -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="CtrlAltDefeat.ai™ — Sloptastic!" />
+<meta property="og:description" content="Real-time territory-capture football on a 3D geodesic globe. Pick your country, claim your jersey, climb the worldwide leaderboards." />
+<meta property="og:image" content="assets/globe.png" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+
+<!-- Fonts: the game inlines these woff2s for offline single-file use; a web page
+     can just pull the same families from Google Fonts (lighter, cached). -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Saira:wght@400;700;900&family=Saira+Condensed:wght@700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+  /* ── Palette: lifted verbatim from GAME/GeoGo-3.html :root ───────────────── */
+  :root {
+    --p1: #0033bb; --p2: #bb5500; --bg: #050d14;
+    --panel: #0a1825; --accent: #f0c040; --text: #c8dde8; --border: #1a3a50;
+    --max: 1080px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: 'Saira', sans-serif; line-height: 1.5;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+  a { color: var(--accent); text-decoration: none; }
+
+  /* Subtle pitch-green radial glow behind the hero, echoing the in-game globe */
+  .bg-glow {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(60% 50% at 50% 22%, rgba(0,51,187,.18), transparent 70%),
+      radial-gradient(45% 40% at 75% 65%, rgba(16,120,40,.14), transparent 70%),
+      radial-gradient(40% 35% at 18% 70%, rgba(240,192,64,.08), transparent 70%);
+  }
+  .wrap { position: relative; z-index: 1; max-width: var(--max); margin: 0 auto; padding: 0 22px; }
+
+  /* ── Animated wordmark (matches .overlay-title in the game) ─────────────── */
+  .wordmark {
+    font-family: 'Saira', sans-serif; font-weight: 900; letter-spacing: .1em;
+    font-size: clamp(2.4rem, 8vw, 5.4rem); line-height: 1; margin: 0;
+    background: linear-gradient(135deg, var(--p1), var(--accent), #ff6600, var(--p1));
+    background-size: 300% 300%;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+    animation: logoShift 4s ease infinite, logoPulse 4s ease infinite;
+  }
+  .wordmark .alt { -webkit-text-fill-color: var(--p2); color: var(--p2); background: none; }
+  .wordmark sup { font-size: .26em; -webkit-text-fill-color: #fff; color: #fff; vertical-align: super; }
+  @keyframes logoShift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+  @keyframes logoPulse {
+    0%,100% { text-shadow: 0 0 8px rgba(17,85,255,.4); }
+    50%     { text-shadow: 0 0 20px rgba(17,85,255,.9), 0 0 40px rgba(240,192,64,.5); }
+  }
+  @keyframes spin { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+  @keyframes floaty { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+
+  /* ── Hero ───────────────────────────────────────────────────────────────── */
+  header.hero { text-align: center; padding: 64px 0 40px; }
+  .prelaunch-badge {
+    display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .28em;
+    text-transform: uppercase; color: var(--accent);
+    border: 1px solid rgba(240,192,64,.45); border-radius: 999px;
+    padding: 6px 16px; margin-bottom: 26px; background: rgba(240,192,64,.06);
+  }
+  .hero-globe {
+    width: clamp(150px, 34vw, 232px); height: auto; margin: 8px auto 22px; display: block;
+    border-radius: 50%; filter: drop-shadow(0 12px 40px rgba(0,51,187,.45));
+    animation: floaty 6s ease-in-out infinite;
+  }
+  .slogan {
+    font-family: 'Saira Condensed', sans-serif; font-weight: 700;
+    font-size: clamp(1.1rem, 3.4vw, 1.7rem); letter-spacing: .18em; text-transform: uppercase;
+    color: var(--text); opacity: .8; margin: 18px 0 6px;
+  }
+  .aka {
+    font-family: 'DM Mono', monospace; font-size: .82rem; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--accent); opacity: .85; margin: 4px 0 0;
+  }
+  .aka span { opacity: .4; margin: 0 6px; }
+  .subhead { max-width: 620px; margin: 14px auto 0; font-size: 1.06rem; opacity: .8; }
+
+  /* ── Buttons (echo .menu-btn) ───────────────────────────────────────────── */
+  .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
+  .btn {
+    font-family: 'Saira', sans-serif; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+    font-size: .94rem; padding: 14px 26px; border-radius: 8px; cursor: pointer;
+    border: 1px solid var(--border); background: var(--panel); color: var(--text);
+    transition: all .2s ease; display: inline-flex; align-items: center; gap: 10px;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { border-color: var(--accent); color: #1a1206;
+    background: linear-gradient(135deg, var(--accent), #ffcc44); box-shadow: 0 8px 28px rgba(240,192,64,.25); }
+  .btn-primary:hover { box-shadow: 0 12px 34px rgba(240,192,64,.4); }
+  .btn-ghost:hover { border-color: var(--p1); color: #fff; background: rgba(0,51,187,.18); }
+
+  /* ── Sections ───────────────────────────────────────────────────────────── */
+  section { padding: 56px 0; }
+  .sec-title {
+    font-family: 'Saira', sans-serif; font-weight: 900; letter-spacing: .06em; text-transform: uppercase;
+    font-size: clamp(1.5rem, 4vw, 2.2rem); text-align: center; margin: 0 0 8px;
+  }
+  .sec-sub { text-align: center; opacity: .65; max-width: 560px; margin: 0 auto 38px; }
+
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+  .feature {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 26px 22px;
+    transition: border-color .2s, transform .2s;
+  }
+  .feature:hover { border-color: rgba(240,192,64,.4); transform: translateY(-3px); }
+  .feature .ico { font-size: 2.2rem; line-height: 1; margin-bottom: 12px; }
+  .feature h3 { margin: 0 0 8px; font-size: 1.16rem; font-weight: 700; letter-spacing: .03em; color: #fff; }
+  .feature p { margin: 0; opacity: .72; font-size: .98rem; }
+
+  /* Controls cards reuse .feature; this list sits beneath the blurb */
+  .ctrl-list { list-style: none; margin: 16px 0 0; padding: 0; }
+  .ctrl-list li { font-size: .92rem; opacity: .8; padding: 7px 0; border-top: 1px solid rgba(26,58,80,.7); }
+  .ctrl-list li:first-child { border-top: none; }
+  .ctrl-list b { color: #fff; font-weight: 700; }
+  .ctrl-list .keys { font-family: 'DM Mono', monospace; color: var(--accent); font-weight: 500; }
+
+  /* Screenshot gallery — drop real captures into assets/ and swap the src */
+  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .shot {
+    aspect-ratio: 16 / 10; border-radius: 14px; border: 1px solid var(--border);
+    background: repeating-linear-gradient(135deg, #0a1825, #0a1825 12px, #0c1c2c 12px, #0c1c2c 24px);
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
+    color: rgba(200,221,232,.4); font-size: .82rem; letter-spacing: .14em; text-transform: uppercase;
+  }
+  .shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* ── Email / waitlist capture ───────────────────────────────────────────── */
+  .signup {
+    max-width: 560px; margin: 0 auto; text-align: center;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 18px; padding: 40px 28px;
+  }
+  .signup h2 { margin: 0 0 6px; font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 900; letter-spacing: .04em; }
+  .signup p { opacity: .72; margin: 0 0 22px; }
+  .signup form { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .signup input[type=email] {
+    flex: 1 1 240px; min-width: 0; font-family: 'Saira', sans-serif; font-size: 1rem;
+    padding: 14px 16px; border-radius: 8px; border: 1px solid var(--border);
+    background: var(--bg); color: var(--text);
+  }
+  .signup input[type=email]:focus { outline: none; border-color: var(--accent); }
+  .signup .fine { font-size: .78rem; opacity: .45; margin-top: 14px; }
+
+  /* ── Footer ─────────────────────────────────────────────────────────────── */
+  footer { text-align: center; padding: 40px 22px 56px; border-top: 1px solid var(--border); margin-top: 40px; }
+  footer .marks { font-family: 'DM Mono', monospace; font-size: .8rem; opacity: .5; letter-spacing: .04em; }
+  footer .social { margin: 0 0 18px; display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
+  footer .social a { opacity: .75; letter-spacing: .1em; text-transform: uppercase; font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="bg-glow"></div>
+
+<!-- ════════════════════════ HERO ════════════════════════ -->
+<header class="hero">
+  <div class="wrap">
+    <span class="prelaunch-badge">Launching Soon</span>
+    <img class="hero-globe" src="assets/globe.png" alt="CtrlAltDefeat football globe" />
+    <h1 class="wordmark">Ctrl<span class="alt">Alt</span>Defeat<span class="alt">.ai</span><sup>™</sup></h1>
+    <div class="slogan">Sloptastic!</div>
+    <p class="subhead">The machines took the jobs. They're not taking the pitch.
+       Capture territory across a 3-D geodesic globe, outplay the AI, and prove humans still win.</p>
+    <div class="cta-row">
+      <!-- AT LAUNCH: restore the Play Now button below (swap href for the final
+           public URL) and delete the "Coming Soon" span:
+           <a class="btn btn-primary" href="FINAL_PUBLIC_URL" target="_blank" rel="noopener">▶ Play Now</a>
+           Playtest link (kept private — do NOT expose pre-launch):
+           https://alanweiss.github.io/ctrlaltdefeat-playtest/ -->
+      <a class="btn btn-primary" href="#waitlist">✉ Join the Waitlist</a>
+      <span class="btn btn-ghost" style="opacity:.5;cursor:default;pointer-events:none;">▶ Play — Coming Soon</span>
+    </div>
+  </div>
+</header>
+
+<!-- ════════════════════════ FEATURES ════════════════════════ -->
+<section id="features">
+  <div class="wrap">
+    <h2 class="sec-title">You vs. the Machine</h2>
+    <p class="sec-sub">Every match is one human against the AI. Capture nodes, complete territories, and beat the algorithm across a spinning truncated-icosahedron football (a.k.a. soccer) pitch — before it beats you.</p>
+    <div class="features">
+      <div class="feature"><div class="ico">🌐</div><h3>Play on a Globe</h3>
+        <p>The whole match unfolds on a 3-D geodesic sphere — strategy in the round, not on a flat field.</p></div>
+      <div class="feature"><div class="ico">🏳️</div><h3>Claim Your Patch</h3>
+        <p>Pick a country and claim your unique player jersey number. Your player patch is yours worldwide — change it any time.</p></div>
+      <div class="feature"><div class="ico">🏆</div><h3>Worldwide Leaderboards</h3>
+        <p>Tournament tiers, a daily challenge, and global rankings. Every best time is on the board.</p></div>
+      <div class="feature"><div class="ico">⚡</div><h3>Outsmart the AI</h3>
+        <p>Speed, freeze, burn, and steal. Read the machine, break its freeze, and snatch the decisive face out from under it.</p></div>
+      <div class="feature"><div class="ico">📅</div><h3>Daily Challenge</h3>
+        <p>One fresh seed a day for the whole world — same board for everyone. Beat today's #1.</p></div>
+      <div class="feature"><div class="ico">🖥️</div><h3>Desktop &amp; Tablet</h3>
+        <p>Runs in any modern browser on desktop and tablet — no install, no download, just open and play.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ CONTROLS ════════════════════════ -->
+<section id="controls">
+  <div class="wrap">
+    <h2 class="sec-title">Controls</h2>
+    <p class="sec-sub">Play your way — grab a controller, tap the screen, or stick to the keyboard.</p>
+    <div class="features">
+      <div class="feature">
+        <div class="ico">🎮</div><h3>Gamepad</h3>
+        <p>Pair or plug in an Xbox, PlayStation, or Switch / 8BitDo controller — Bluetooth or USB.</p>
+        <ul class="ctrl-list">
+          <li><b>D-pad / left stick</b> — move across nodes</li>
+          <li><b class="keys">A · B · X · Y</b> — fire your four powerups</li>
+          <li><b>Back / Select</b> — pause &amp; menus</li>
+        </ul>
+      </div>
+      <div class="feature">
+        <div class="ico">👆</div><h3>Touchscreen</h3>
+        <p>Built for tablets — every move is a tap or a swipe away.</p>
+        <ul class="ctrl-list">
+          <li><b>Tap a node</b> — move &amp; capture there</li>
+          <li><b>Swipe</b> — quick directional move</li>
+          <li><b>Two-finger drag</b> — spin the globe</li>
+          <li><b>On-screen buttons</b> — fire powerups</li>
+        </ul>
+      </div>
+      <div class="feature">
+        <div class="ico">⌨️</div><h3>Keyboard</h3>
+        <p>Mouse &amp; keyboard on any desktop browser.</p>
+        <ul class="ctrl-list">
+          <li><b>Arrow keys</b> — move across nodes</li>
+          <li><b class="keys">Z · X · C · V</b> — speed, slow, freeze, steal</li>
+          <li><b class="keys">Esc</b> — pause &amp; menus</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ SCREENSHOTS ════════════════════════ -->
+<section id="screens">
+  <div class="wrap">
+    <h2 class="sec-title">In the Match</h2>
+    <p class="sec-sub">The signature globe, the worldwide leaderboards, and the football (a.k.a. soccer) pitch — pick your kit and kick off.</p>
+    <div class="shots">
+      <div class="shot"><img src="assets/shot1.jpg" alt="CtrlAltDefeat title globe with country jersey patches" loading="lazy" /></div>
+      <div class="shot"><img src="assets/prematch.jpg" alt="Pre-match VS screen — pick your country and kit before kickoff" loading="lazy" /></div>
+      <div class="shot"><img src="assets/inmatch.jpg" alt="Live match — capturing faces across the geodesic pitch" loading="lazy" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ WAITLIST ════════════════════════ -->
+<section id="waitlist">
+  <div class="wrap">
+    <div class="signup">
+      <h2>Pick a side. Pick humanity.</h2>
+      <p>Join the waitlist — we'll email you the moment it's humans-vs-AI kickoff.</p>
+      <!--
+        FORMSPREE — emails land in your inbox.
+        1. Create a free account at formspree.io, make a new form, copy its endpoint
+           (looks like  https://formspree.io/f/abcdwxyz ).
+        2. Paste that endpoint into the form's action="" below, replacing YOUR_FORM_ID.
+        Until the real ID is in, the form falls back to a local thank-you (no email sent).
+      -->
+      <form id="waitlist-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address" />
+        <input type="hidden" name="_subject" value="New CtrlAltDefeat.ai waitlist signup" />
+        <!-- honeypot: bots fill this; humans never see it; Formspree silently drops those -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" />
+        <button class="btn btn-primary" type="submit">Notify Me</button>
+      </form>
+      <div id="waitlist-thanks" style="display:none;color:var(--accent);margin-top:16px;font-weight:700;letter-spacing:.06em;">⚽ You're on the list — see you on the pitch, human.</div>
+      <p class="fine">No spam. One launch email, maybe a heads-up before. Unsubscribe any time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ FOOTER ════════════════════════ -->
+<footer>
+  <div class="social">
+    <!-- Add your real handles -->
+    <a href="#" target="_blank" rel="noopener">Twitter / X</a>
+    <a href="#" target="_blank" rel="noopener">Instagram</a>
+    <a href="#" target="_blank" rel="noopener">TikTok</a>
+  </div>
+  <div class="marks">© 1991-2026 Automatic Talent — All Rights Reserved Worldwide</div>
+</footer>
+
+<script>
+  // Waitlist → Formspree via AJAX so the visitor stays on the page and sees the
+  // inline thank-you. If the endpoint is still the YOUR_FORM_ID placeholder, fall
+  // back to a local thank-you so the form never looks broken before it's wired.
+  (function(){
+    var form = document.getElementById('waitlist-form');
+    if (!form) return;
+    function thanks(){
+      form.style.display = 'none';
+      document.getElementById('waitlist-thanks').style.display = 'block';
+    }
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if (form.action.indexOf('YOUR_FORM_ID') !== -1) { thanks(); return; } // not wired yet
+      var btn = form.querySelector('button[type=submit]');
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+      fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
+        .then(function(r){
+          if (r.ok) { thanks(); return; }
+          return r.json().then(function(j){
+            alert((j && j.errors && j.errors[0] && j.errors[0].message) || 'Something went wrong — please try again.');
+            if (btn) { btn.disabled = false; btn.textContent = 'Notify Me'; }
+          });
+        })
+        .catch(function(){
+          alert('Network error — please try again.');
+          if (btn) { btn.disabled = false; btn.textContent = 'Notify Me'; }
+        });
+    });
+  })();
+</script>
+</body>
+</html>
