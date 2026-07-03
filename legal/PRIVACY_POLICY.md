@@ -1,0 +1,105 @@
+# Privacy Policy
+
+**Last updated: July 2, 2026**
+
+> **Placeholders to fill in before publishing** — replace every `[[...]]`:
+> `Automatic Talent` (your Santa Rosa sole proprietorship),
+> `contact@automatictalent.com`, `www.ctrlaltdefeat.ai`.
+> This is a plain-language starter draft, not legal advice. Have it reviewed before you rely on it.
+
+---
+
+## 1. The short version
+
+CtrlAltDefeat.ai ("the Game"), operated by Automatic Talent ("we," "us," "our"), is designed to
+collect as little about you as possible. We do not require you to create an account, we do not ask for your
+real name, and we do not sell your data to anyone. If you only play offline practice mode, we collect
+essentially nothing.
+
+## 2. What we collect
+
+**When you play offline (practice mode):** nothing is sent to us. Your progress and settings stay on your
+device.
+
+**When you use online features (leaderboards, player-tag reservation):** we collect only what's needed to
+run those features:
+
+- **Game scores and results** you choose to submit to the leaderboard.
+- **Your player tag** — the short identifier you reserve. We do **not** store your real name. There is no
+  name field.
+- **A claim number** used to associate a reserved tag with the device that reserved it.
+- **Basic technical data** that our backend receives automatically when your device talks to our servers,
+  such as an IP address and general request information. We use this to operate and protect the service, not
+  to identify you personally.
+
+We do **not** collect: your real name, email (unless you email us directly), phone number, contacts,
+precise location, photos, or payment card details.
+
+## 3. Donations
+
+If you choose to make a voluntary donation, the payment is handled by a third-party payment processor —
+**Ko-fi** and/or **PayPal**. We do **not** receive or store your full card or bank details; those processors
+handle that under their own privacy policies (see Ko-fi's and PayPal's privacy policies for details). We may
+see limited information such as a donation amount and, if you provide one, a name or message you chose to
+share. Donations are gifts and are not purchases.
+
+## 4. How we use what we collect
+
+We use the limited data above only to:
+
+- display and maintain the leaderboard;
+- reserve, verify, and manage player tags;
+- keep the service working, prevent cheating, and protect against abuse or attacks.
+
+We do not use your data for advertising, and we do not build advertising profiles.
+
+## 5. Where your data is stored
+
+Online data (scores, player tags, claim numbers) is stored using **Supabase**, a third-party hosting and
+database provider, which stores it on its servers under its own security and privacy practices. We restrict
+access to this data and have configured the database so the public cannot freely read or delete other
+players' records.
+
+## 6. Sharing
+
+We do **not** sell, rent, or trade your data. We share it only:
+
+- with service providers that run the Game's infrastructure (such as Supabase and, for donations, the
+  payment processor), strictly so they can provide those services;
+- if required by law, or to protect the Game, our users, or our rights.
+
+Note that leaderboard entries — your **player tag and score** — are, by design, visible to other players.
+Don't put anything private into a player tag.
+
+## 7. Turning off the servers
+
+If we discontinue the online features, we may delete the associated online data (scores, tags, claim
+numbers). Offline practice mode will continue to work and does not depend on this data.
+
+## 8. Data retention and deletion
+
+We keep online data only as long as needed to run the leaderboard and tag system. You can ask us to remove
+your player tag and associated leaderboard entries by contacting us at contact@automatictalent.com with your player
+tag and claim number so we can locate the right records.
+
+## 9. Children's privacy
+
+The Game is family-friendly and does not knowingly collect personal information from children. Because we
+don't collect real names, emails, or contact details through the Game, players remain effectively anonymous
+on the leaderboard. If you believe a child has shared personal information with us (for example, by putting
+it in a player tag or emailing us), contact us and we'll remove it.
+
+## 10. Your choices
+
+- **Play fully offline** — use practice mode and don't submit scores; nothing is sent to us.
+- **Remove your data** — email us to have your player tag and leaderboard entries deleted.
+- **Don't donate** — donations are entirely optional.
+
+## 11. Changes to this policy
+
+We may update this policy from time to time. The "Last updated" date at the top shows the current version.
+Material changes will be reflected here and, where practical, noted in the Game or on our site.
+
+## 12. Contact
+
+Questions or requests about your data: contact@automatictalent.com or www.ctrlaltdefeat.ai.
