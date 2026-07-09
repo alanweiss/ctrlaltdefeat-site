@@ -18,12 +18,15 @@ cad-site/
 ## Live site
 **https://alanweiss.github.io/ctrlaltdefeat-site/**
 
-- Host: **GitHub Pages**, repo **`alanweiss/ctrlaltdefeat-site`** (public), serving
+- **Launch host = Cloudflare Pages** (decided 2026-07-09 — see the launch plan). Currently
+  served from **GitHub Pages** during development; migrate to Cloudflare before launch
+  (steps below). Either host serves the *identical* page — the look lives in `index.html`.
+- Current dev host: **GitHub Pages**, repo **`alanweiss/ctrlaltdefeat-site`** (public), serving
   branch `main` at root (`/`), HTTPS enforced. This is a SEPARATE repo from the
   game (`ctrlaltdefeat-playtest`) and from the dev repo — its own git remote.
 - `~/.local/bin/gh` is the authenticated GitHub CLI (`alanweiss`).
 
-## Deploy / redeploy (GitHub Pages)
+## Deploy / redeploy (GitHub Pages — current dev host)
 Edit files in this folder, then from `cad-site/`:
 ```sh
 git add -A
@@ -73,8 +76,18 @@ cd cad-site && python3 -m http.server 8080   # → http://localhost:8080
 3. Back in **Settings → Pages**, tick **Enforce HTTPS** once the cert provisions
    (a few minutes). Propagation is usually minutes, up to ~an hour.
 
-## Alternative host — Cloudflare Pages
-If you later want faster cache + serverless form handling: Cloudflare dashboard →
-**Pages → Connect to Git** → pick this repo, no build command, output `/`. Then
-**Custom domains** → enter the domain and add the records it shows in GoDaddy.
-Either host serves the *identical* page — the look comes from `index.html`.
+## Launch host — Cloudflare Pages (PRIMARY, decided 2026-07-09)
+The launch home. Chosen for a **private** source (GitHub Pages free tier requires a public
+repo), a fast global CDN (matters for the large single-file game), custom domain, auto HTTPS,
+and serverless form handling available later.
+
+**Migrate before launch:**
+1. Cloudflare dashboard → **Pages → Connect to Git** → pick the `ctrlaltdefeat-site` repo;
+   **no build command**, output directory `/`.
+2. **Custom domains** → enter `ctrlaltdefeat.ai` (and `www`) → add the DNS records it shows
+   in **GoDaddy** (replaces the GitHub Pages A/CNAME records above).
+3. Confirm HTTPS provisions, then the bare domain serves from Cloudflare.
+
+No rebuild needed — the page is identical; the look comes from `index.html`. Keep the 5 GB
+game dev repo (GeoGoClaude) OUT of this repo — deploy only the built landing assets.
+Netlify remains a fine fallback if Cloudflare ever doesn't fit.
