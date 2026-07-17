@@ -56,12 +56,13 @@ cd cad-site && python3 -m http.server 8080   # → http://localhost:8080
   Formspree (AJAX submit + `_gotcha` honeypot). Create a form at formspree.io,
   copy its endpoint, and replace `YOUR_FORM_ID` in `index.html`. Until then the
   JS detects the placeholder and falls back to a local thank-you (no email sent).
-- **Play link** — currently a disabled "▶ Play — Coming Soon" chip. At launch,
-  restore the `Play Now` `<a>` (commented just above it in the `.cta-row`) and
-  point its `href` at the final public game URL.
+- **Play link** — the `▶ Play Now` button is now live in the `.cta-row`; set its
+  `href` (currently the `FINAL_PUBLIC_URL` placeholder) to the public game URL when
+  you turn the game on. (No pre-launch period — pieces go in place, then game on.)
 - **Custom domain (GoDaddy)** — see below.
-- **Social links** (`<footer>` placeholders) + **prelaunch badge** ("Launching
-  Soon" → a date, or remove at launch).
+- **Social links** — Twitter/Instagram/TikTok footer placeholders were removed
+  (no accounts yet); add them back when handles exist. "Launching Soon" badge
+  removed. The waitlist is now a **humans-vs-humans (PvP) heads-up**, not a launch list.
 - **SEO meta** — title/description still say "Football (soccer) game" for search;
   soften if you don't want to imply the genre.
 
