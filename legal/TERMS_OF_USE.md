@@ -2,10 +2,9 @@
 
 **Last updated: July 2, 2026**
 
-> **Placeholders to fill in before publishing** — replace every `[[...]]`:
-> `Automatic Talent` (your Santa Rosa sole proprietorship),
-> `contact@automatictalent.com`, `www.ctrlaltdefeat.ai`.
-> This is a plain-language starter draft, not legal advice. Have it reviewed before you rely on it.
+> Operated by **Automatic Talent** (Santa Rosa sole proprietorship). Contact `contact@automatictalent.com`,
+> site `www.ctrlaltdefeat.ai`. This is a plain-language draft, not legal advice — have it reviewed before you
+> rely on it. **Canonical published version:** `legal/terms.html` (keep the two in sync when editing).
 
 ---
 

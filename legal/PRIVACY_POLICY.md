@@ -2,10 +2,9 @@
 
 **Last updated: July 2, 2026**
 
-> **Placeholders to fill in before publishing** — replace every `[[...]]`:
-> `Automatic Talent` (your Santa Rosa sole proprietorship),
-> `contact@automatictalent.com`, `www.ctrlaltdefeat.ai`.
-> This is a plain-language starter draft, not legal advice. Have it reviewed before you rely on it.
+> Operated by **Automatic Talent** (Santa Rosa sole proprietorship). Contact `contact@automatictalent.com`,
+> site `www.ctrlaltdefeat.ai`. This is a plain-language draft, not legal advice — have it reviewed before you
+> rely on it. **Canonical published version:** `legal/privacy.html` (keep the two in sync when editing).
 
 ---
 
@@ -32,16 +31,23 @@ run those features:
   such as an IP address and general request information. We use this to operate and protect the service, not
   to identify you personally.
 
-We do **not** collect: your real name, email (unless you email us directly), phone number, contacts,
-precise location, photos, or payment card details.
+**When you join the waitlist:** the email address you enter, so we can notify you about launch and updates.
+The waitlist form is processed by **Formspree**, a third-party form provider that receives the email you
+submit under its own privacy policy. Joining is optional, and you can ask us to remove your email at any time
+(see §8).
+
+We do **not** collect: your real name, email (unless you email us directly or join the waitlist), phone
+number, contacts, precise location, photos, or payment card details.
 
 ## 3. Donations
 
-If you choose to make a voluntary donation, the payment is handled by a third-party payment processor —
-**Ko-fi** and/or **PayPal**. We do **not** receive or store your full card or bank details; those processors
-handle that under their own privacy policies (see Ko-fi's and PayPal's privacy policies for details). We may
-see limited information such as a donation amount and, if you provide one, a name or message you chose to
-share. Donations are gifts and are not purchases.
+The Game is also distributed on **itch.io** on a name-your-own-price (free) basis; any optional payment you
+make there is handled by itch.io under its own privacy policy. If you make a voluntary donation on our own
+site, the payment is handled by a third-party payment processor — **Ko-fi** and/or **PayPal**. In every case
+we do **not** receive or store your full card or bank details; those processors handle that under their own
+privacy policies (see itch.io's, Ko-fi's, and PayPal's privacy policies for details). We may see limited
+information such as a payment amount and, if you provide one, a name or message you chose to share. These
+payments are optional gifts, not required purchases.
 
 ## 4. How we use what we collect
 
@@ -64,8 +70,9 @@ players' records.
 
 We do **not** sell, rent, or trade your data. We share it only:
 
-- with service providers that run the Game's infrastructure (such as Supabase and, for donations, the
-  payment processor), strictly so they can provide those services;
+- with service providers that run the Game's infrastructure (such as **Supabase** for leaderboard data,
+  **Formspree** for the waitlist form, **itch.io** for distribution, and the payment processors **Ko-fi** /
+  **PayPal** for donations), strictly so they can provide those services;
 - if required by law, or to protect the Game, our users, or our rights.
 
 Note that leaderboard entries — your **player tag and score** — are, by design, visible to other players.
