@@ -45,7 +45,7 @@ The Game is also distributed on **itch.io** on a name-your-own-price (free) basi
 make there is handled by itch.io under its own privacy policy. If you make a voluntary donation on our own
 site, the payment is handled by a third-party payment processor — **Ko-fi** and/or **PayPal**. In every case
 we do **not** receive or store your full card or bank details; those processors handle that under their own
-privacy policies (see itch.io's, Ko-fi's, and PayPal's privacy policies for details). We may see limited
+privacy policies (see [itch.io's](https://itch.io/docs/legal/privacy-policy), [Ko-fi's](https://more.ko-fi.com/privacy), and [PayPal's](https://www.paypal.com/us/legalhub/privacy-full) privacy policies for details). We may see limited
 information such as a payment amount and, if you provide one, a name or message you chose to share. These
 payments are optional gifts, not required purchases.
 

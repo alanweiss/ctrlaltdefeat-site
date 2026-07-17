@@ -19,6 +19,11 @@ agree, please don't use the Game.
 The Game is provided free of charge. We do not sell the Game, and we do not require payment to play any
 part of it.
 
+**Distribution (itch.io).** The Game is also distributed on **itch.io** on a name-your-own-price (free)
+basis. When you play or pay through itch.io, your use of that store is also governed by
+[itch.io's own terms and policies](https://itch.io/docs/legal/terms). Any optional payment you make there is
+a voluntary gift on the same basis as the donations below — not a purchase.
+
 **Donations.** You may choose to support the Game with a voluntary donation. Donations are gifts. They are
 **not** purchases, and they do **not** entitle you to any product, feature, unlock, service, reward, refund,
 or preferential treatment. Because a donation buys nothing, there is nothing to refund; however, if you
