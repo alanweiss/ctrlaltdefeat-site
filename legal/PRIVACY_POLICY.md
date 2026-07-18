@@ -108,6 +108,25 @@ on the leaderboard. If you believe a child has shared personal information with 
 We may update this policy from time to time. The "Last updated" date at the top shows the current version.
 Material changes will be reflected here and, where practical, noted in the Game or on our site.
 
-## 12. Contact
+## 12. Your privacy rights (EU/UK & California)
+
+Because we collect so little, honoring your rights is simple. Wherever you live, you can ask us to **access**,
+**correct**, or **delete** the limited online data tied to your play (see §8) by emailing
+contact@automatictalent.com.
+
+**If you're in the EU or UK (GDPR / UK GDPR):** we process your data on two bases — your **consent** (for the
+waitlist email) and our **legitimate interests** (running the leaderboard and protecting it from cheating and
+abuse). You have the right to access, correct, erase, or object to that processing, to withdraw consent at any
+time, and to lodge a complaint with your local data protection authority. We do not make automated decisions
+about you, and we do not build profiles.
+
+**If you're in California (CCPA / CPRA):** we do **not** sell your personal information and do **not** "share"
+it for cross-context behavioral advertising. You may request access to, or deletion of, your information, and we
+will not discriminate against you for exercising these rights.
+
+**International transfers:** our providers (such as **Supabase** and **Formspree**) may store or process data on
+servers in the **United States**. By using the online features, you understand your data may be handled there.
+
+## 13. Contact
 
 Questions or requests about your data: contact@automatictalent.com or www.ctrlaltdefeat.ai.
