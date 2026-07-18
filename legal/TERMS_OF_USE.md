@@ -1,6 +1,6 @@
 # Terms of Use
 
-**Last updated: July 2, 2026**
+**Last updated: July 17, 2026**
 
 > Operated by **Automatic Talent** (Santa Rosa sole proprietorship). Contact `contact@automatictalent.com`,
 > site `www.ctrlaltdefeat.ai`. This is a plain-language draft, not legal advice — have it reviewed before you
@@ -29,23 +29,22 @@ a voluntary gift on the same basis as the donations below — not a purchase.
 or preferential treatment. Because a donation buys nothing, there is nothing to refund; however, if you
 believe a donation was made in error, contact us at contact@automatictalent.com and we'll try to help.
 
-## 3. Player tags
+## 3. Player numbers
 
-The Game lets players reserve a player tag (a short identifier used on the leaderboard). Player tags:
+The Game lets players reserve a jersey number under a chosen country — the identifier shown on the leaderboard. These player numbers:
 
 - are provided **free of charge** and are **never sold**;
 - may be given to players at our discretion, including as a thank-you to supporters, but are not a reward
   that can be bought;
-- remain our property — reserving a tag grants you a personal, non-transferable permission to use it in the
+- remain our property — reserving a number grants you a personal, non-transferable permission to use it in the
   Game, not ownership of it;
-- may be reclaimed, changed, or removed by us if a tag is inactive, unused, offensive, impersonates someone,
-  or is used abusively.
+- may be reclaimed, changed, or removed by us if a number is inactive, unused, offensive, or used abusively.
 
-You may not sell, trade, or transfer a player tag to anyone else.
+You may not sell, trade, or transfer a player number to anyone else.
 
 ## 4. Online features and servers
 
-Some features — including online leaderboards and player-tag reservation — rely on servers we operate. These
+Some features — including online leaderboards and jersey-number reservation — rely on servers we operate. These
 online features may be changed, limited, interrupted, or **shut down permanently at any time**, with or
 without notice, and we are not obligated to keep them running.
 
@@ -63,10 +62,10 @@ When using the Game and its online features, you agree not to:
 - attempt to disrupt, overload, attack, or gain unauthorized access to our servers or backend;
 - reverse engineer the online services to abuse them (this doesn't restrict any rights granted by an
   open-source license, if we publish the code under one);
-- use offensive, harassing, hateful, or impersonating player tags;
+- choose jersey numbers that are offensive or used as hate symbols, or hoard numbers to deny them to others;
 - use the Game to break any applicable law.
 
-We may remove scores, reclaim tags, or block access if you break these rules.
+We may remove scores, reclaim numbers, or block access if you break these rules.
 
 ## 6. Intellectual property
 
