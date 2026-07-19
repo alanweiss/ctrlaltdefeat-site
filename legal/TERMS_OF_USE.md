@@ -1,6 +1,6 @@
 # Terms of Use
 
-**Last updated: July 17, 2026**
+**Last updated: July 19, 2026**
 
 > Operated by **Automatic Talent** (Santa Rosa sole proprietorship). Contact `contact@automatictalent.com`,
 > site `www.ctrlaltdefeat.ai`. This is a plain-language draft, not legal advice — have it reviewed before you
@@ -76,6 +76,12 @@ code.
 
 Any voice-over, music, or third-party assets are used under their own licenses, and your use of the Game
 does not grant you rights to those assets.
+
+Some parts of the Game were produced with generative-AI tools — voice-over generated with ElevenLabs, and
+certain visuals (including stadium art and the end-game trophy video) generated with Google Gemini; development
+also used AI coding assistance. AI-generated media may carry provider watermarks, including invisible SynthID.
+Game design and art direction are our own. Where a jurisdiction does not extend copyright to purely AI-generated
+material, that limitation applies only to those individual assets, not to the Game as a whole.
 
 ## 7. No warranty
 
