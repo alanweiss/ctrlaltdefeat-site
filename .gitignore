@@ -1,0 +1,8 @@
+.DS_Store
+
+# never commit credentials / secrets (defensive net)
+*two factor*
+*2fa*
+*recovery codes*
+*backup codes*
+*.secret
